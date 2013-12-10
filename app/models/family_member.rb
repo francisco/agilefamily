@@ -13,5 +13,5 @@ class FamilyMember < ActiveRecord::Base
   has_many :task_logs
 
   # validates :name, presence: true
-  validates :phone_number, uniqueness: true
+  validates :phone, uniqueness: true
 end

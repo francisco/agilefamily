@@ -7,8 +7,15 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-<p class="notice"><%= notice %></p>
-<p class="alert"><%= alert %></p>
+<% if current_family_member.present? %>
+    <%= link_to 'Sign Out', destroy_family_member_session_path, :method => :delete %>
+  <%# user is not logged in, show signup and login links %>
+  <% else %>
+    <%= link_to 'Sign In', new_family_member_session_path %> |
+    <%= link_to 'Register Now!', new_family_member_registration_path %>
+  <% end %>
+  <p class="notice"><%= notice %></p>
+  <p class="alert"><%= alert %></p>
 <%= yield %>
 
 </body>
