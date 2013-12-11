@@ -1,0 +1,16 @@
+<%= form_for @family do |f| %>
+  <%= f.label :name %>:
+  <%= f.text_field :name %><br />
+
+  <%= f.label :mission_statement %>:
+  <%= f.text_field :mission_statement %><br />
+
+  <%= f.label :meeting_day %>:
+  <%= f.text_field :meeting_day %><br />
+
+  <%= f.label :meeting_time %>:
+  <%= f.text_field :meeting_time %><br />
+
+  <%= f.submit %>
+<% end %>
+

@@ -1,7 +1,6 @@
 require 'spec_helper'
 
 describe FamilyMember do
-  self.instance_exec &$test_vars
 
   it "should belong to a family" do
     family_member = FamilyMember.create(age: 10, family_id: 1, name: "Test")

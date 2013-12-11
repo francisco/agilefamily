@@ -14,3 +14,7 @@
  *= require_self
  *= require_tree .
  */
+
+.family-form{
+  width: 500px;
+}

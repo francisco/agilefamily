@@ -1,6 +1,6 @@
 class FamiliesController < ApplicationController
-  def index
 
+  def index
   end
 
   def new
@@ -9,6 +9,13 @@ class FamiliesController < ApplicationController
 
   def create
     @family = Family.create(params[:family])
+    current_family_member.update_attributes(family_id: @family.id)
+    redirect_to family_path(@family)
+  end
+
+  def show
+    @family = Family.find(params[:id])
+
   end
 
 end

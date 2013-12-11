@@ -1,7 +1,6 @@
 require 'spec_helper'
 
 describe TaskLog do
- self.instance_exec &$test_vars
 
   it "should belong to family member" do
     task_log.should respond_to(:task)

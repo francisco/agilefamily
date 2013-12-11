@@ -14,9 +14,12 @@
     <%= link_to 'Sign In', new_family_member_session_path %> |
     <%= link_to 'Register Now!', new_family_member_registration_path %>
   <% end %>
-  <p class="notice"><%= notice %></p>
-  <p class="alert"><%= alert %></p>
-<%= yield %>
+<p class="notice"><%= notice %></p>
+<p class="alert"><%= alert %></p>
+
+<div class="container">
+  <%= yield %>
+</div>
 
 </body>
 </html>

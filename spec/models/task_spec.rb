@@ -1,7 +1,6 @@
 require 'spec_helper'
 
 describe Task do
-self.instance_exec &$test_vars
 
   it "should belong to family member" do
     task.should respond_to(:family_member_id)
