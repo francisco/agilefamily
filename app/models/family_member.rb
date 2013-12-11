@@ -5,13 +5,13 @@ class FamilyMember < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :email, :password, :password_confirmation, :remember_me
-  attr_accessible :age, :email, :family_id, :name, :phone, :role
+  attr_accessible :email, :password, :password_confirmation, :remember_me,:age, :family_id, :name, :phone, :role
 
   belongs_to :family
   has_many :tasks
   has_many :task_logs
 
+
   # validates :name, presence: true
-  validates :phone, uniqueness: true
+  # validates :phone, uniqueness: true
 end

@@ -1,5 +1,26 @@
-<h2> My family</h2>
-Name: <%= @family.name %><br />
-Mission Statement: <%= @family.mission_statement %><br />
-Meeting Day: <%= @family.meeting_day %><br />
-Meeting Time: <%= @family.meeting_time %>
+
+<div class="panel panel-success col-md-8">
+  <div class="panel-heading">
+    <h3 class="panel-title">My Family:</h3>
+  </div>
+  Name: <%= @family.name %><br />
+  Mission Statement: <%= @family.mission_statement %><br />
+  Meeting Day: <%= @family.meeting_day %><br />
+  Meeting Time: <%= @family.meeting_time %><br />
+</div>
+<br />
+
+<div id="family-member-list" class="col-md-7">
+  <h4>Family Members</h4>
+  <table class="table">
+    <thead>
+      <th>Name</th>
+      <th>Phone Number</th>
+      <th>Email</th>
+      <th>Age</th>
+      <th>Accept/Deny</th>
+    </thead>
+    <tbody>
+    </tbody>
+  </table>
+</div>
