@@ -1,5 +1,5 @@
 class FamiliesController < ApplicationController
-  # before_filter :authenticate_user!
+  before_filter :authenticate_family_member!
 
   # def index
   #   if current_family_member
@@ -11,19 +11,12 @@ class FamiliesController < ApplicationController
 
   def new
     @family = Family.new
-    @family_member = FamilyMember.new
   end
 
   def create
-    if params[:family]
-      @family = Family.create(params[:family])
-      current_family_member.update_attributes(family_id: @family.id)
-      redirect_to family_path(@family)
-    elsif params[:family_member]
-      @family = Family.find(params[:family_member])
-      current_family_member.update_attributes(family_id: @family.id)
-      redirect_to family_path(@family)
-    end
+    @family = Family.create(params[:family])
+    current_family_member.update_attributes(family_id: @family.id, accepted: true)
+    redirect_to family_path(@family)
   end
 
   def show

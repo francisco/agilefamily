@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131211001924) do
+ActiveRecord::Schema.define(:version => 20131212053131) do
 
   create_table "families", :force => true do |t|
     t.text     "mission_statement"
@@ -25,7 +25,7 @@ ActiveRecord::Schema.define(:version => 20131211001924) do
   create_table "family_members", :force => true do |t|
     t.string   "name"
     t.string   "email"
-    t.integer  "phone"
+    t.string   "phone"
     t.integer  "age"
     t.integer  "family_id"
     t.string   "role"
@@ -40,6 +40,7 @@ ActiveRecord::Schema.define(:version => 20131211001924) do
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
+    t.boolean  "accepted"
   end
 
   add_index "family_members", ["email"], :name => "index_family_members_on_email", :unique => true

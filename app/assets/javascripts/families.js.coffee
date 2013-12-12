@@ -4,25 +4,18 @@
 
 $ ->
   $family_id = $('#family_id').val()
-  familyMember = _.template('<tr><td><%= item.name %></td><td><%= item.phone %></td><td><%= item.email %></td><td><%= item.age %></td><td><%= item.invitation_accepted_at ? "Accepted" : "Pending" %></td></tr>')
+  familyMember = _.template('<tr><td><%= item.name %></td><td><%= item.phone %></td><td><%= item.email %></td><td><%= item.age %></td><td><button class="btn btn-success btn-sm" id="accept-fam-mem">Authorize</button> <button class="btn btn-danger btn-sm" id="reject-fam-mem">Reject</button></td></tr>')
 
-  $('#add-family-member').click ->
+  checkFamilyMembers = () ->
+    $.ajax("/families/#{$family_id}.json",
+      type: "GET"
+    ).done (data) ->
+      for item in data
+        $('#family-member-list table tbody').append(familyMember({item: item}))
+
+  $('#family-member-list').each ->
+    checkFamilyMembers()
+
+  $('#accept-fam-mem').click ->
     event.preventDefault()
-    $name = $("#name").val()
-    $phone = $("#phone").val()
-    $email = $("#email").val()
-    $age = $("#age").val()
-    $event_id = $('#event_id').val()
-    params = { family_member: { name: $name, phone: $phone, email: $email, age: $age, family_id: $family_id}}
-    $("#name").val("")
-    $("#phone").val("")
-    $("#email").val("")
-    $("#age").val("")
-
-    $.ajax("/family_members/create",
-      type: "GET",
-      data: params
-      ).done (data) ->
-        $('#family-member-list table tbody').append(familyMember({item: data}))
-
 
