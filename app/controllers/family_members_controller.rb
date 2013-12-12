@@ -1,7 +1,7 @@
 class FamilyMembersController < ApplicationController
   def update
-    # family_member = FamilyMember.find(current_family_member.id)
-    @family_member = FamilyMember.find(params[:id])
+    @family_member = FamilyMember.find(current_family_member.id)
+    # @family_member = FamilyMember.find(params[:id])
 
     if @family_member.family_id == nil
       family_id = params[:family_member][:family_id]

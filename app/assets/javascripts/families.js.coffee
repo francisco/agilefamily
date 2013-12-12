@@ -16,15 +16,16 @@ $ ->
   $('#family-member-list').each ->
     checkFamilyMembers()
 
-  $('#accept-fam-mem').click ->
+  $('body').on "click", "#accept-fam-mem", ->
+    console.log "CLICKED Authorize"
     event.preventDefault()
-    $family_member = $this.parent()
-    $family_member_id = $family_member.attr("value")
+    $family_member_id = @value
     params = { family_member: {id: $family_member_id, accepted: true, family_id: $family_id}}
-    $.ajax("/family_members",
+    $.ajax(
+      url: "/family_members",
       type: "PUT",
-      data: params
-    )
+      data: params)
+
     $('#accept-fam-mem').addClass("hidden")
 
   $('#reject-fam-mem').click ->
@@ -32,8 +33,9 @@ $ ->
     $family_member = $this.parent()
     $family_member_id = $family_member.attr("value")
     params = { family_member: {id: $family_member_id, accepted: false}}
-    $.ajax("/family_members",
-      type: "PUT"
+    $.ajax(
+      url: "/family_members",
+      type: "PUT",
       data: params
     )
     $('#reject-fam-mem').addClass("hidden")
