@@ -4,7 +4,7 @@
 
 $ ->
   $family_id = $('#family_id').val()
-  familyMember = _.template('<tr><td><%= item.name %></td><td><%= item.phone %></td><td><%= item.email %></td><td><%= item.age %></td><td><button class="btn btn-success btn-sm" id="accept-fam-mem">Authorize</button> <button class="btn btn-danger btn-sm" id="reject-fam-mem">Reject</button></td></tr>')
+  familyMember = _.template('<tr><td><%= item.name %></td><td><%= item.phone %></td><td><%= item.email %></td><td><%= item.age %></td><td><button class="btn btn-success btn-sm" id="accept-fam-mem" value="<%= item.id %>">Authorize</button> <button class="btn btn-danger btn-sm" id="reject-fam-mem">Reject</button></td></tr>')
 
   checkFamilyMembers = () ->
     $.ajax("/families/#{$family_id}.json",
@@ -18,4 +18,24 @@ $ ->
 
   $('#accept-fam-mem').click ->
     event.preventDefault()
+    $family_member = $this.parent()
+    $family_member_id = $family_member.attr("value")
+    params = { family_member: {id: $family_member_id, accepted: true, family_id: $family_id}}
+    $.ajax("/family_members",
+      type: "PUT",
+      data: params
+    )
+    $('#accept-fam-mem').addClass("hidden")
+
+  $('#reject-fam-mem').click ->
+    event.preventDefault()
+    $family_member = $this.parent()
+    $family_member_id = $family_member.attr("value")
+    params = { family_member: {id: $family_member_id, accepted: false}}
+    $.ajax("/family_members",
+      type: "PUT"
+      data: params
+    )
+    $('#reject-fam-mem').addClass("hidden")
+
 
