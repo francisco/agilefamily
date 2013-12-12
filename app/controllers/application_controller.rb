@@ -8,4 +8,5 @@ class ApplicationController < ActionController::Base
       new_family_path
     end
   end
+
 end

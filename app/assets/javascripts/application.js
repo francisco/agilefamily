@@ -15,4 +15,6 @@
 //= require bootstrap.min.js
 //= require bootstrap-formhelpers.min.js
 //= require underscore-min.js
+//= require angular
+//= require angular-resource
 //= require_tree .
