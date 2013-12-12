@@ -1,3 +1,13 @@
+<h3>I already have a family</h3>
+<%= form_for @family_member do |f| %>
+  <%= f.label :family_id %>:
+  <%= f.text_field :family_id %><br />
+
+  <%= f.submit %>
+<% end %>
+<br />
+
+<h3>I need to create a family</h3>
 <%= form_for @family do |f| %>
   <%= f.label :name %>:
   <%= f.text_field :name %><br />
