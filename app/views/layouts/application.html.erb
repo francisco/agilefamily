@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="Tasker">
 <head>
   <title>AgilefamilyAlpha</title>
   <%= stylesheet_link_tag    "application", :media => "all" %>
@@ -17,7 +17,7 @@
 <p class="notice"><%= notice %></p>
 <p class="alert"><%= alert %></p>
 
-<div class="container">
+<div class="container" id="container">
   <%= yield %>
 </div>
 

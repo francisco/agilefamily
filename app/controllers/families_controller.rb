@@ -1,13 +1,9 @@
 class FamiliesController < ApplicationController
   before_filter :authenticate_family_member!
 
-  # def index
-  #   if current_family_member
-  #     if current_family_member.family_id
-  #       redirect_to family_path(current_family_member.family_id)
-  #     end
-  #   end
-  # end
+  def index
+
+  end
 
   def new
     @family = Family.new
