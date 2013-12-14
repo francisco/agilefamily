@@ -8,5 +8,22 @@
         <li ng-repeat="name in appData.names">{{name.name}}</li>
       </ul>
     </div>
+    <h4><span ng-bind="name"></span>'s Task List</h4>
+    <h4>Add a task</h4>
+      <form ng-submit="addTask()">
+        Select Family Member:
+        <select ng-selected="showSel()" ng-model="newTask.familyMember" ng-options="val as val['name'] for (key,val) in appData.familyMembers"></select><br />
+        Select Weekdays:
+        <input type="checkbox" ng-model="newTask.monday"> Monday
+        <input type="checkbox" ng-model="newTask.tuesday"> Tuesday
+        <input type="checkbox" ng-model="newTask.wednesday"> Wednesday
+        <input type="checkbox" ng-model="newTask.thursday"> Thursday
+        <input type="checkbox" ng-model="newTask.friday"> Friday
+        <input type="checkbox" ng-model="newTask.saturday"> Saturday
+        <input type="checkbox" ng-model="newTask.sunday"> Sunday<br />
+        Input Task Description:
+        <input type='text' ng-model="newTask.description"><br />
+      <button>Submit</button>
+    </form>
   </div>
 </div>

@@ -77,6 +77,7 @@ GEM
     mime-types (1.25.1)
     mini_portile (0.5.2)
     multi_json (1.8.2)
+    ng-rails-csrf (0.1.0)
     nokogiri (1.6.0)
       mini_portile (~> 0.5.0)
     nyan-cat-formatter (0.5.2)
@@ -170,6 +171,7 @@ DEPENDENCIES
   devise
   jquery-rails
   konacha
+  ng-rails-csrf
   nyan-cat-formatter
   pg
   pry

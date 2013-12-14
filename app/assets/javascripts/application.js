@@ -17,4 +17,5 @@
 //= require underscore-min.js
 //= require angular
 //= require angular-resource
+//= require ng-rails-csrf
 //= require_tree .
