@@ -16,7 +16,7 @@ $ ->
   $('#family-member-list').each ->
     checkFamilyMembers()
 
-  $('body').on "click", "#accept-fam-mem", ->
+  $("#family-member-list").on "click", "#accept-fam-mem", ->
     event.preventDefault()
     $family_member_id = @value
     params = {id: $family_member_id, accepted: true, family_id: $family_id}
@@ -26,7 +26,7 @@ $ ->
       data: params)
     # $this.addClass("hidden")
 
-  $('body').on "click", "#reject-fam-mem", ->
+  $("#family-member-list").on "click", "#reject-fam-mem", ->
     event.preventDefault()
     $family_member_id = @value
     params = {id: $family_member_id, accepted: false}

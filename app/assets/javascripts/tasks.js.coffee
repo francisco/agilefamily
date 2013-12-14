@@ -1,25 +1,13 @@
 
-app = angular.module("Tasker", ["ngResource"])
+taskSchedule = angular.module 'taskSchedule', ['ngResource']
 
-app.factory "Task", ["$resource", ($resource) ->
-  $resource("/tasks/:id", {id: "@id"}, {update: {method: "PUT"}})
-]
+taskSchedule.controller "NamesController", ($scope, $http, $resource) ->
+  $scope.getNames = ->
+    nameRequest = $http.get('/tasks.json')
+    nameRequest.success (data) ->
+      $scope.appData = data
 
-@RaffleCtrl = ["$scope", "Task", ($scope, Task) ->
-  $scope.tasks = Task.query()
-
-  $scope.addEntry = ->
-    task = Task.save($scope.newTask)
-    $scope.tasks.push(task)
-    $scope.newTask = {}
-
-  $scope.drawWinner = ->
-    pool = []
-    angular.forEach $scope.tasks, (task) ->
-      pool.push(task) if !task.winner
-    if pool.length > 0
-      task = pool[Math.floor(Math.random()*pool.length)]
-      task.winner = true
-      task.$update()
-      $scope.lastWinner = task
-]
+  $scope.getNames()
+  $scope.showSel = ()->
+    userId = $scope.selectedName.id
+    console.log $scope.appData.element(userId)
