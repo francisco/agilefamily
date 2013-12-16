@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131212053131) do
+ActiveRecord::Schema.define(:version => 20131216010044) do
 
   create_table "families", :force => true do |t|
     t.text     "mission_statement"
@@ -67,6 +67,7 @@ ActiveRecord::Schema.define(:version => 20131212053131) do
     t.integer  "family_member_id"
     t.datetime "created_at",       :null => false
     t.datetime "updated_at",       :null => false
+    t.boolean  "complete"
   end
 
   create_table "weekdays", :force => true do |t|

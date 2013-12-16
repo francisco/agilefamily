@@ -25,4 +25,12 @@ class FamilyMembersController < ApplicationController
       format.json {render json: @family_member}
     end
   end
+
+  def show
+    @tasks = Task.where("family_member_id = ?", params[:id])
+    respond_to do |format|
+      format.json {render json: @tasks}
+    end
+  end
+
 end

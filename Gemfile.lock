@@ -57,6 +57,11 @@ GEM
     diff-lcs (1.2.5)
     erubis (2.7.0)
     execjs (2.0.2)
+    handlebars_assets (0.15)
+      execjs (>= 1.2.9)
+      multi_json
+      sprockets (>= 2.0.3)
+      tilt
     hike (1.2.3)
     i18n (0.6.9)
     journey (1.0.4)
@@ -169,6 +174,7 @@ DEPENDENCIES
   angularjs-rails
   coffee-rails (~> 3.2.1)
   devise
+  handlebars_assets
   jquery-rails
   konacha
   ng-rails-csrf
