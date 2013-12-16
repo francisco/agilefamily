@@ -27,3 +27,10 @@ taskSchedule.controller "TaskController", ($scope, $http, $resource) ->
     pushTask.success (data) ->
       console.log "Task was added"
   # $scope.addTask() = ->
+
+  $scope.completeTask = () ->
+    $scope.appData.tasks.push($scope.updateTask)
+    data = $scope.appData.tasks
+    pushTask = $http.post('/tasks', data)
+    pushTask.success (data) ->
+      console.log "Task was updated"
