@@ -1,5 +1,5 @@
 class Task < ActiveRecord::Base
-  attr_accessible :description, :family_member_id
+  attr_accessible :description, :family_member_id, :complete
 
   belongs_to :task_log
   belongs_to :family_member

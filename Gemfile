@@ -8,6 +8,7 @@ gem 'rails', '3.2.15'
 gem 'pg'
 gem 'devise'
 gem 'ng-rails-csrf'
+gem 'whenever', :require => false
 
 # Gems used only for assets and not required
 # in production environments by default.
