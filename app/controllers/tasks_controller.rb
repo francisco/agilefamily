@@ -19,26 +19,27 @@ class TasksController < ApplicationController
     family_member_id = ajaxResponse[0][:familyMember][:id]
     description = ajaxResponse[0][:description]
     @task = Task.create(family_member_id: family_member_id, description: description)
-    if ajaxResponse[0].has_key?("monday")
-      @task.weekdays << Weekday.find_by_weekday("monday")
+    #numbers correspond to days of the week starting with Monday, which equals 1
+    if ajaxResponse[0].has_key?("1")
+      @task.weekdays << Weekday.find_by_weekday("1")
     end
-    if ajaxResponse[0].has_key?("tuesday")
-      @task.weekdays << Weekday.find_by_weekday("tuesday")
+    if ajaxResponse[0].has_key?("2")
+      @task.weekdays << Weekday.find_by_weekday("2")
     end
-    if ajaxResponse[0].has_key?("wednesday")
-      @task.weekdays << Weekday.find_by_weekday("wednesday")
+    if ajaxResponse[0].has_key?("3")
+      @task.weekdays << Weekday.find_by_weekday("3")
     end
-    if ajaxResponse[0].has_key?("thursday")
-      @task.weekdays << Weekday.find_by_weekday("thursday")
+    if ajaxResponse[0].has_key?("4")
+      @task.weekdays << Weekday.find_by_weekday("4")
     end
-    if ajaxResponse[0].has_key?("friday")
-      @task.weekdays << Weekday.find_by_weekday("friday")
+    if ajaxResponse[0].has_key?("5")
+      @task.weekdays << Weekday.find_by_weekday("5")
     end
-    if ajaxResponse[0].has_key?("saturday")
-      @task.weekdays << Weekday.find_by_weekday("saturday")
+    if ajaxResponse[0].has_key?("6")
+      @task.weekdays << Weekday.find_by_weekday("6")
     end
-    if ajaxResponse[0].has_key?("sunday")
-      @task.weekdays << Weekday.find_by_weekday("sunday")
+    if ajaxResponse[0].has_key?("7")
+      @task.weekdays << Weekday.find_by_weekday("7")
     end
     respond_to do |format|
       format.json { render json: @task }

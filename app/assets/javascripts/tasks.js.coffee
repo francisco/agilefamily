@@ -1,12 +1,7 @@
 
 taskSchedule = angular.module 'taskSchedule', ['ngResource', 'ng-rails-csrf']
 
-# taskSchedule.directive "listName", () ->
-#   if username.name != null
-#     template: "{{username.name}}\'s Task List"
-
 taskSchedule.controller "NamesController", ($scope, $http, $resource) ->
-
   $scope.getNames = ->
     nameRequest = $http.get('/tasks.json')
     nameRequest.success (data) ->
@@ -30,21 +25,21 @@ taskSchedule.controller "NamesController", ($scope, $http, $resource) ->
         $scope.status = status
 
     $scope.orgData = ()->
-      $scope.taskData = {"1": [], "2": [], "3":[], "4":[], "5":[], "6":[], "7":[]};
+      $scope.taskData = {"1": [], "2": [], "3":[], "4":[], "5":[], "6":[], "7":[]}
 
       $scope.newTaskData.forEach (item)->
         item.days.forEach (day)->
-          # console.log(day)
           $scope.taskData[day.weekday].push(item.task.description)
 
-      # console.log $scope.taskData
+      console.log $scope.taskData
 
   $scope.updateModel = (method, url) ->
     $scope.method = method;
     $scope.url = url;
 
-taskSchedule.controller "TaskController", ($scope, $http, $resource) ->
   $scope.addTask = () ->
+    $scope.getUser = () ->
+      userId = $scope.newTask.familyMember.id
     $scope.appData = {tasks: []}
     $scope.appData.tasks.push($scope.newTask)
     data = $scope.appData.tasks
@@ -53,9 +48,10 @@ taskSchedule.controller "TaskController", ($scope, $http, $resource) ->
     pushTask.success (data) ->
       console.log "Task was added"
 
-  $scope.completeTask = () ->
-    $scope.appData.tasks.push($scope.updateTask)
-    data = $scope.appData.tasks
-    pushTask = $http.post('/tasks', data)
-    pushTask.success (data) ->
-      console.log "Task was updated"
+  $scope.completeTask = (taskId) ->
+    console.log taskId
+    # $scope.appData.task.push($scope.completionData)
+    # data = $scope.appData.tasks
+    # pushTask = $http.put('/tasks', data)
+    # pushTask.success (data) ->
+    #   console.log "Task was updated"
