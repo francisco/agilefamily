@@ -8,8 +8,8 @@
         <li ng-repeat="name in appData.names">{{name.name}}</li>
       </ul>
     </div>
-    <h4><span ng-bind="name"></span>'s Task List</h4>
-      <table>
+    <div list-name></div>
+      <table class="table">
         <tr>
           <th>Monday</th>
           <th>Tuesday</th>
@@ -22,7 +22,6 @@
         <tr>
           <td ng-repeat="(day,task_descriptions) in taskData" value="{{task.id}}">
             <div ng-repeat="task in task_descriptions"> {{task}}</div>
-
           </td>
         </tr>
         <tr>
@@ -49,7 +48,7 @@
     <h4>Add a task</h4>
     <form ng-submit="addTask()" role="form">
       Select Family Member:
-      <select ng-selected="showSel()" ng-model="newTask.familyMember" ng-options="val as val['name'] for (key,val) in appData.familyMembers"></select><br />
+      <select ng-change="fetch()" ng-model="newTask.familyMember" ng-options="val as val['name'] for (key,val) in appData.familyMembers"></select><br />
       Select Weekdays:
       <input type="checkbox" ng-model="newTask.monday"> Monday
       <input type="checkbox" ng-model="newTask.tuesday"> Tuesday

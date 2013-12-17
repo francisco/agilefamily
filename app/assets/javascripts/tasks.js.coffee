@@ -1,6 +1,10 @@
 
 taskSchedule = angular.module 'taskSchedule', ['ngResource', 'ng-rails-csrf']
 
+# taskSchedule.directive "listName", () ->
+#   if username.name != null
+#     template: "{{username.name}}\'s Task List"
+
 taskSchedule.controller "NamesController", ($scope, $http, $resource) ->
 
   $scope.getNames = ->
@@ -12,13 +16,12 @@ taskSchedule.controller "NamesController", ($scope, $http, $resource) ->
 
   $scope.fetch = () ->
     userId = $scope.selectedName.id
-    console.log userId
+    $scope.username = $scope.selectedName
     $scope.method = 'GET'
     $scope.url = '/family_members/'+userId+'.json'
 
     $http({method: $scope.method, url: $scope.url})
       .success (data, status)->
-        console.log(data)
         $scope.status = status
         $scope.newTaskData = data
         $scope.orgData()
@@ -31,40 +34,14 @@ taskSchedule.controller "NamesController", ($scope, $http, $resource) ->
 
       $scope.newTaskData.forEach (item)->
         item.days.forEach (day)->
-          console.log(day)
+          # console.log(day)
           $scope.taskData[day.weekday].push(item.task.description)
 
-      console.log $scope.taskData
-
-
-
+      # console.log $scope.taskData
 
   $scope.updateModel = (method, url) ->
     $scope.method = method;
     $scope.url = url;
-
-
-taskSchedule.controller "FetchController", ($scope, $http, $resource) ->
-  $scope.method = 'GET';
-  $scope.url = '/family_members/#{userId}.json';
-
-  # makeReq = ()->
-  #   $http.get('/family_members/5.json').success (data)->
-  #     console.log data
-
-  # $scope.showSel = () ->
-  #   # alert "hey"
-  #   console.log "REQUEST MADE"
-  #   userId = $scope.selectedName.id
-  #   makeReq()
-    # $scope.name = $scope.selectedName.name
-    # taskRequest = $http.get('/family_members/5.json')
-    # taskRequest.success (data) ->
-    #   console.log("the data is ", data)
-    #   $scope.taskData.tasks = data
-    #   console.log "the request was sent"
-
-
 
 taskSchedule.controller "TaskController", ($scope, $http, $resource) ->
   $scope.addTask = () ->
@@ -75,7 +52,6 @@ taskSchedule.controller "TaskController", ($scope, $http, $resource) ->
     pushTask = $http.post('/tasks', data)
     pushTask.success (data) ->
       console.log "Task was added"
-  # $scope.addTask() = ->
 
   $scope.completeTask = () ->
     $scope.appData.tasks.push($scope.updateTask)
