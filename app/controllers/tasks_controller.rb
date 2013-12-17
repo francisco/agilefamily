@@ -41,6 +41,9 @@ class TasksController < ApplicationController
     if ajaxResponse[0].has_key?("7")
       @task.weekdays << Weekday.find_by_weekday("7")
     end
+    puts "*"*30
+    p @task
+    p @task.weekdays
     respond_to do |format|
       format.json { render json: @task }
     end

@@ -21,7 +21,7 @@
         </tr>
         <tr>
           <td ng-repeat="(day,task_descriptions) in taskData">
-            <div ng-repeat="task in task_descriptions" ng-click="completeTask(task.id)"> {{task}} <i class="fa fa-circle-o right"></i><hr></div>
+            <div ng-repeat="task in task_descriptions" ng-click="completeTask()"> {{task}}<i class="fa fa-circle-o right"></i><hr></div>
           </td>
         </tr>
       </table>

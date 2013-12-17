@@ -28,10 +28,13 @@ class FamilyMembersController < ApplicationController
 
   def show
     @tasks = Task.where("family_member_id = ?", params[:id])
+
     tasks_info = []
 
     @tasks.each do |task|
-      tasks_info << {task: task, days: task.weekdays}
+      tasks_info << {task: task, days: task.task_weekdays.map do |thing|
+        thing.as_json.merge({weekday: thing.weekday.weekday})
+      end}
     end
 
     respond_to do |format|
