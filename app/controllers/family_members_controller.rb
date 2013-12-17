@@ -28,8 +28,14 @@ class FamilyMembersController < ApplicationController
 
   def show
     @tasks = Task.where("family_member_id = ?", params[:id])
+    tasks_info = []
+
+    @tasks.each do |task|
+      tasks_info << {task: task, days: task.weekdays}
+    end
+
     respond_to do |format|
-      format.json {render json: @tasks}
+      format.json {render json: tasks_info}
     end
   end
 

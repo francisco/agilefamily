@@ -2,7 +2,8 @@ class FamiliesController < ApplicationController
   before_filter :authenticate_family_member!
 
   def index
-
+    @family = Family.find(current_family_member.family_id)
+    redirect_to family_path(@family)
   end
 
   def new

@@ -1,4 +1,5 @@
 class TasksController < ApplicationController
+  before_filter :authenticate_family_member!
 
   def index
     family_member_id = current_family_member.family_id
@@ -49,7 +50,7 @@ class TasksController < ApplicationController
   end
 
   def update
-    respond_with Task.update(params[:id], params[:task])
+    Task.update(params[:id], params[:task])
   end
 
   def destroy
