@@ -1,27 +1,23 @@
-<h2>Sign up</h2>
+<div class="signerin">
+  <h2 class="form-signin-heading">Sign Up</h2>
+  <%= form_for(resource, :as => resource_name, class: "form-signin", :url => registration_path(resource_name)) do |f| %>
+    <%= devise_error_messages! %>
 
-<%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
-  <%= devise_error_messages! %>
+    <div><%= f.email_field :email, :autofocus => true, class: "form-control", "placeholder" => "Email Address"  %></div><br />
+    <div><%= f.text_field :name, class: "form-control", "placeholder" => "Name" %></div><br />
 
-  <div><%= f.label :email %><br />
-  <%= f.email_field :email, :autofocus => true %></div>
+    <div><%= f.text_field :phone, class: "form-control", "placeholder" => "Phone" %><small>(Only used for weekly meeting reminders)</small></div><br />
 
-  <div><%= f.label :name %><br />
-  <%= f.text_field :name %></div>
+    <div><%= f.text_field :age, class: "form-control", "placeholder" => "Age" %></div><br />
 
-  <div><%= f.label :phone_number %> <small>(Only used for weekly meeting reminders)</small><br />
-  <%= f.text_field :phone %></div>
+    <div>
+    <%= f.password_field :password, class: "form-control", "placeholder" => "Password" %></div><br />
 
-  <div><%= f.label :age %><br />
-  <%= f.text_field :age %></div>
+    <div>
+    <%= f.password_field :password_confirmation, class: "form-control", "placeholder" => "Password Confirmation" %></div><br />
 
-  <div><%= f.label :password %><br />
-  <%= f.password_field :password %></div>
+    <div><%= f.submit "Sign up", class: "btn btn-primary" %></div><br />
+  <% end %>
 
-  <div><%= f.label :password_confirmation %><br />
-  <%= f.password_field :password_confirmation %></div>
-
-  <div><%= f.submit "Sign up" %></div>
-<% end %>
-
-<%= render "devise/shared/links" %>
+  <%= render "devise/shared/links" %>
+</div>

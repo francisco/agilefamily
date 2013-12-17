@@ -3,7 +3,7 @@
   <div ng-controller="NamesController">
     <h4>Select a family member</h4>
     <div class="btn-group">
-      <select ng-selected="showSel()" ng-model="selectedName" ng-options="val as val['name'] for (key,val) in appData.familyMembers"></select>
+      <select  ng-change="fetch()" ng-model="selectedName" ng-options="val as val['name'] for (key,val) in appData.familyMembers"></select>
       <ul class="dropdown-menu" role="menu">
         <li ng-repeat="name in appData.names">{{name.name}}</li>
       </ul>
@@ -20,7 +20,10 @@
           <th>Sunday</th>
         </tr>
         <tr>
-          <td ng-repeat="task in taskData.tasks" value="{{task.id}}">{{task.description}}</td>
+          <td ng-repeat="(day,task_descriptions) in taskData" value="{{task.id}}">
+            <div ng-repeat="task in task_descriptions"> {{task}}</div>
+
+          </td>
         </tr>
         <tr>
           <td ng-repeat="task in taskData.tasks" value="{{task.id}}">{{task.description}}</td>
