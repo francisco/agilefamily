@@ -1,26 +1,46 @@
-<h3>I already have a family</h3>
-<%= form_for current_family_member do |f| %>
-  <%= f.label :family_id %>:
-  <%= f.text_field :family_id %><br />
+<div class="col-md-8">
+  <div class="panel-group" id="accordion">
+    <div class="panel panel-primary">
+      <div class="panel-heading">
+        <h4 class="panel-title">
+          <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+          I already have a family
+          </a>
+        </h4>
+      </div>
+      <div id="collapseOne" class="panel-collapse collapse">
+        <div class="panel-body">
+          <%= form_for(current_family_member, class: "form-signin") do |f| %>
+            <%= f.text_field :family_id, class: "form-control", "placeholder" => "Enter your family id" %><br />
+            <%= f.submit "Add my family id", class: "btn btn-primary" %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+    <div class="panel panel-primary">
+      <div class="panel-heading">
+        <h4 class="panel-title">
+          <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
+          I need to create a family
+          </a>
+        </h4>
+      </div>
+      <div id="collapseTwo" class="panel-collapse collapse">
+        <div class="panel-body">
+          <%= form_for(@family, class: "form-signin") do |f| %>
+            <%= f.text_field :name, class: "form-control", "placeholder" => "Family Name" %><br />
 
-  <%= f.submit %>
-<% end %>
-<br />
+            <%= f.text_field :mission_statement, class: "form-control", "placeholder" => "Family Mission Statement" %><br />
 
-<h3>I need to create a family</h3>
-<%= form_for @family do |f| %>
-  <%= f.label :name %>:
-  <%= f.text_field :name %><br />
+            <%= f.text_field :meeting_day, class: "form-control", "placeholder" => "Family Meeting Day" %><br />
 
-  <%= f.label :mission_statement %>:
-  <%= f.text_field :mission_statement %><br />
+            <%= f.label :meeting_time %>:
+            <input class="form-control" id="family_meeting_time" name="family[meeting_time]" type="time"><br />
 
-  <%= f.label :meeting_day %>:
-  <%= f.text_field :meeting_day %><br />
-
-  <%= f.label :meeting_time %>:
-  <%= f.text_field :meeting_time %><br />
-
-  <%= f.submit %>
-<% end %>
-
+            <%= f.submit "Create my family", class: "btn btn-primary" %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

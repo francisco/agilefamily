@@ -23,29 +23,28 @@
         <li><a href="/families">My Family</a></li>
         <li><a href="/tasks">Tasks</a></li>
       </ul>
-    <ul class="nav navbar-nav navbar-right">
-      <li><a href="#"></a></li>
-      <% if current_family_member.present? %>
-        <li><%= link_to 'Sign Out', destroy_family_member_session_path, :method => :delete %></li>
-      <% else %>
-        <li>
-          <%= link_to "Sign up", new_family_member_registration_path %>
-        </li>
-        <li>
-          <%= link_to "Sign in", new_family_member_session_path %>
-        </li>
-      <% end %>
-  <%# user is not logged in, show signup and login links %>
-    </ul>
-  </div>
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="#"></a></li>
+        <% if current_family_member.present? %>
+          <li><%= link_to 'Sign Out', destroy_family_member_session_path, :method => :delete %></li>
+        <% else %>
+          <li>
+            <%= link_to "Sign up", new_family_member_registration_path %>
+          </li>
+          <li>
+            <%= link_to "Sign in", new_family_member_session_path %>
+          </li>
+        <% end %>
+      </ul>
+    </div>
   </nav>
 
+
+<div class="container">
 <p class="notice"><%= notice %></p>
 <p class="alert"><%= alert %></p>
 
-<div class="container" id="container">
   <%= yield %>
 </div>
-
 </body>
 </html>
