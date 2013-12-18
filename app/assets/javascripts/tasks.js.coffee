@@ -29,7 +29,11 @@ taskSchedule.controller "NamesController", ($scope, $http, $resource) ->
 
       $scope.newTaskData.forEach (item)->
         item.days.forEach (day)->
-          $scope.taskData[day.weekday].push(item.task.description)
+          description = item.task.description
+          taskWeekdayId = day.id
+          id = item.task.id
+          taskPackage = {"id": id,"description": description, "taskWeekdayId": taskWeekdayId}
+          $scope.taskData[day.weekday].push(taskPackage)
 
       console.log $scope.taskData
 
@@ -48,10 +52,16 @@ taskSchedule.controller "NamesController", ($scope, $http, $resource) ->
     pushTask.success (data) ->
       console.log "Task was added"
 
-  $scope.completeTask = (taskId) ->
-    console.log taskId
-    # $scope.appData.task.push($scope.completionData)
-    # data = $scope.appData.tasks
-    # pushTask = $http.put('/tasks', data)
-    # pushTask.success (data) ->
-    #   console.log "Task was updated"
+  $scope.itemClass = (item) ->
+      return item == $scope.done ? "active" : undefined
+
+  $scope.completeTask = (taskId, taskWeekdayId, item) ->
+    console.log taskWeekdayId
+    $scope.done = "strike"
+    updateTask = $http.put('/tasks/'+taskId+".json", data: taskWeekdayId)
+    updateTask.success (data) ->
+      console.log "Task was updated"
+    $scope.itemClass(item)
+
+
+

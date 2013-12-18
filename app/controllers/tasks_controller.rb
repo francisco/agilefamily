@@ -54,10 +54,17 @@ class TasksController < ApplicationController
   end
 
   def update
-    Task.update(params[:id], params[:task])
+    @task = Task.find_by_id(params[:id])
+    taskWeekday = TaskWeekday.find_by_id(params[:data])
+    taskWeekday.update_attributes(complete: true)
+    puts "*"*30
+    p taskWeekday
+    respond_to do |format|
+      format.json { render json: @task }
+    end
+
   end
 
   def destroy
-    respond_with Task.destroy(params[:id])
   end
 end

@@ -32,8 +32,8 @@ class FamilyMembersController < ApplicationController
     tasks_info = []
 
     @tasks.each do |task|
-      tasks_info << {task: task, days: task.task_weekdays.map do |thing|
-        thing.as_json.merge({weekday: thing.weekday.weekday})
+      tasks_info << {task: task, days: task.task_weekdays.map do |day|
+        day.as_json.merge({weekday: day.weekday.weekday})
       end}
     end
 
