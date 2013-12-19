@@ -52,12 +52,13 @@ taskSchedule.controller "NamesController", [ '$scope', '$http', '$resource', ($s
     data = $scope.appData.tasks
 
     $scope.addTasker.$setPristine()
-    # $scope.newTask = ''
+    $scope.newTask = ''
 
     pushTask = $http.post('/tasks', data)
     $scope.getTask($scope.taskUserId)
     pushTask.success (data) ->
       # console.log "Task was added"
+    $scope.appData.tasks = ''
 
   $scope.itemClass = (item) ->
     return item == $scope.done ? "active" : undefined
