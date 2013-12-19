@@ -29,7 +29,7 @@
     <div class="panel panel-success">
       <div class="panel-heading"><strong>Add a Task</strong></div>
       <div class="panel-body">
-        <form ng-submit="addTask()" role="form">
+        <form name="addTasker" role="form">
           <div class="btn-group">
             <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
               {{taskUsername}} <span class="caret"></span>
@@ -65,7 +65,7 @@
           </div><br />
           <h4>Input Task Description:</h4>
           <input type='text' ng-model="newTask.description" class="form-control"><br />
-          <button class="btn btn-success">Submit</button>
+          <button ng-click="addTask()" class="btn btn-success">Submit</button>
         </form>
       </div>
     </div>

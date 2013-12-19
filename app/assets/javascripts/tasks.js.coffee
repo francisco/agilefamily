@@ -50,6 +50,10 @@ taskSchedule.controller "NamesController", [ '$scope', '$http', '$resource', ($s
     $scope.newTask.userId = $scope.taskUserId
     $scope.appData.tasks.push($scope.newTask)
     data = $scope.appData.tasks
+
+    $scope.addTasker.$setPristine()
+    # $scope.newTask = ''
+
     pushTask = $http.post('/tasks', data)
     $scope.getTask($scope.taskUserId)
     pushTask.success (data) ->
