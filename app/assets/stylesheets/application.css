@@ -49,6 +49,19 @@
 
 .active {
   text-decoration: line-through;
-  color: red;
+  color: black;
+  background-color: white;
 }
 
+input[type="radio"] {
+    display: none;
+}
+
+.selected {
+  background-color: #95a5a6;
+}
+
+.rating .input-checked{
+  background-color: blue;
+  color:#F7F7F7;
+}

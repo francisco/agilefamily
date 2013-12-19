@@ -32,7 +32,8 @@ taskSchedule.controller "NamesController", ($scope, $http, $resource) ->
           description = item.task.description
           taskWeekdayId = day.id
           id = item.task.id
-          taskPackage = {"id": id,"description": description, "taskWeekdayId": taskWeekdayId}
+          complete = day.complete
+          taskPackage = {"id": id,"description": description, "taskWeekdayId": taskWeekdayId, "complete": complete}
           $scope.taskData[day.weekday].push(taskPackage)
 
       console.log $scope.taskData
@@ -41,23 +42,32 @@ taskSchedule.controller "NamesController", ($scope, $http, $resource) ->
     $scope.method = method;
     $scope.url = url;
 
+  $scope.getUser = () ->
+    userId = $scope.newTask.familyMember.id
+
   $scope.addTask = () ->
-    $scope.getUser = () ->
-      userId = $scope.newTask.familyMember.id
-    $scope.appData = {tasks: []}
+    scope = angular.element("[ng-controller=NamesController]").scope()
+    console.log scope
+    $scope.appData["tasks"] = $scope.appData["tasks"] || []
+
+
     $scope.appData.tasks.push($scope.newTask)
     data = $scope.appData.tasks
+    # scope.appData.tasks= $scope.appData.tasks
     console.log data
     pushTask = $http.post('/tasks', data)
+    $scope.fetch()
     pushTask.success (data) ->
       console.log "Task was added"
 
   $scope.itemClass = (item) ->
       return item == $scope.done ? "active" : undefined
 
-  $scope.completeTask = (taskId, taskWeekdayId, item) ->
+  $scope.completeTask = (taskId, taskWeekdayId) ->
     console.log taskWeekdayId
     $scope.done = "strike"
+    $scope.picked = taskWeekdayId
+    this.task.complete = !this.task.complete
     updateTask = $http.put('/tasks/'+taskId+".json", data: taskWeekdayId)
     updateTask.success (data) ->
       console.log "Task was updated"

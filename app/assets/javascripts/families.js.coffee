@@ -37,4 +37,7 @@ $ ->
     )
     # $('#reject-fam-mem').addClass("hidden")
 
-
+  $('label').click ->
+    $(this).addClass('btn-primary')
+    $(this).siblings('.rating').removeClass('btn-primary')
+    $('.leder').removeClass('hidden')

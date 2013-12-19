@@ -20,8 +20,8 @@
           <th>Sunday</th>
         </tr>
         <tr>
-          <td ng-repeat="(day,task_descriptions) in taskData">
-            <div ng-repeat="task in task_descriptions" ng-click="completeTask(task.id, task.taskWeekdayId, item)" ng-class="itemClass(item)"> {{task.description}}<hr></div>
+          <td id="taskData" ng-repeat="(day,task_descriptions) in taskData">
+            <div ng-repeat="task in task_descriptions" ng-click="completeTask(task.id, task.taskWeekdayId)" ng-class="{active: task.complete == true}", value="{{task.taskWeekdayId}}" ng-model="$parent.picked"> {{task.description}}<hr></div>
           </td>
         </tr>
       </table>

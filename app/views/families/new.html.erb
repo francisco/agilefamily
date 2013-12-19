@@ -1,10 +1,12 @@
-<div class="col-md-8">
+<h1 class="text-center"><small>Please select either option</small></h1>
+
+<div class="col-md-6">
   <div class="panel-group" id="accordion">
     <div class="panel panel-primary">
       <div class="panel-heading">
         <h4 class="panel-title">
           <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
-          I already have a family
+          I already have a family profile<i class="fa fa-caret-square-o-down right"></i>
           </a>
         </h4>
       </div>
@@ -17,25 +19,60 @@
         </div>
       </div>
     </div>
+  </div>
+</div>
+<div class="col-md-6">
+  <div class="panel-group" id="accordion">
     <div class="panel panel-primary">
       <div class="panel-heading">
         <h4 class="panel-title">
           <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
-          I need to create a family
+          I need to create a family profile<i class="fa fa-caret-square-o-down right"></i>
           </a>
         </h4>
       </div>
       <div id="collapseTwo" class="panel-collapse collapse">
         <div class="panel-body">
           <%= form_for(@family, class: "form-signin") do |f| %>
+            <%= f.label :family_name %>:
             <%= f.text_field :name, class: "form-control", "placeholder" => "Family Name" %><br />
 
+            <%= f.label :family_mission_statement %>:
             <%= f.text_field :mission_statement, class: "form-control", "placeholder" => "Family Mission Statement" %><br />
 
-            <%= f.text_field :meeting_day, class: "form-control", "placeholder" => "Family Meeting Day" %><br />
+            <%= f.label :meeting_weekday %>:<br />
+          <div class="btn-group">
+            <label class="btn btn-default rating">
+              <%= f.radio_button :meeting_day, 'Monday'%>
+              <span>Mon</span>
+            </label>
+            <label class="btn btn-default rating">
+            <%= f.radio_button :meeting_day, 'Tuesday'%>
+              <span>Tue</span>
+            </label>
+            <label class="btn btn-default rating">
+            <%= f.radio_button :meeting_day, "Wednesday"%>
+              <span>Wed</span>
+            </label>
+            <label class="btn btn-default rating">
+            <%= f.radio_button :meeting_day, "Thursday"%>
+              <span>Thu</span>
+            </label>
+            <label class="btn btn-default rating">
+            <%= f.radio_button :meeting_day, "Friday"%>
+              <span>Fri</span>
+            </label>
+            <label class="btn btn-default rating">
+            <%= f.radio_button :meeting_day, "Saturday"%>
+              <span>Sat</span>
+            </label>
+            <label class="btn btn-default rating">
+            <%= f.radio_button :meeting_day, "Sunday"%>
+              <span>Sun</span>
+            </label>
+          </div><br /><br />
 
-            <%= f.label :meeting_time %>:
-            <input class="form-control" id="family_meeting_time" name="family[meeting_time]" type="time"><br />
+            <%= f.label :meeting_time %>: <input class="form-control" id="family_meeting_time" name="family[meeting_time]" type="time"><br />
 
             <%= f.submit "Create my family", class: "btn btn-primary" %>
           <% end %>
