@@ -1,45 +1,73 @@
 <h1>Weekly tasks</h1>
 <div ng-app="taskSchedule">
   <div ng-controller="NamesController">
-    <h4>Select a family member</h4>
     <div class="btn-group">
-      <select  ng-change="fetch()" ng-model="selectedName" ng-options="val as val['name'] for (key,val) in appData.familyMembers"></select>
+      <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+        {{username}} <span class="caret"></span>
+      </button>
       <ul class="dropdown-menu" role="menu">
-        <li ng-repeat="name in appData.names">{{name.name}}</li>
+        <li ng-repeat="(key,val) in appData.familyMembers" ng-click="fetch(val['id'],val['name'])">{{val['name']}}</li>
       </ul>
+      <!-- <select ng-change="fetch()" ng-model="selectedName" ng-options="val as val['name'] for (key,val) in appData.familyMembers"></select> -->
+    </div><br /><br />
+    <table class="table table-bordered">
+      <tr>
+        <th>Monday</th>
+        <th>Tuesday</th>
+        <th>Wednesday</th>
+        <th>Thursday</th>
+        <th>Friday</th>
+        <th>Saturday</th>
+        <th>Sunday</th>
+      </tr>
+      <tr>
+        <td id="taskData" ng-repeat="(day,task_descriptions) in taskData">
+          <div ng-repeat="task in task_descriptions" ng-click="completeTask(task.id, task.taskWeekdayId)" ng-class="{active: task.complete == true}"> {{task.description}}<br/></div>
+        </td>
+      </tr>
+    </table>
+    <div class="panel panel-success">
+      <div class="panel-heading"><strong>Add a Task</strong></div>
+      <div class="panel-body">
+        <form ng-submit="addTask()" role="form">
+          <div class="btn-group">
+            <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+              {{taskUsername}} <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu" role="menu">
+              <li ng-repeat="(key,val) in appData.familyMembers" ng-click="getUser(val['id'],val['name'])">{{val['name']}}</li>
+            </ul>
+      <!-- <select ng-change="fetch()" ng-model="selectedName" ng-options="val as val['name'] for (key,val) in appData.familyMembers"></select> -->
+          </div><br />
+          <h4>Select Weekdays:</h4>
+          <div class="btn-group">
+            <label class="btn btn-default">
+              <input type="checkbox" ng-model="newTask.1"> Monday
+            </label>
+            <label class="btn btn-default">
+              <input type="checkbox" ng-model="newTask.2"> Tuesday
+            </label>
+            <label class="btn btn-default">
+              <input type="checkbox" ng-model="newTask.3"> Wednesday
+            </label>
+            <label class="btn btn-default">
+              <input type="checkbox" ng-model="newTask.4"> Thursday
+            </label>
+            <label class="btn btn-default">
+              <input type="checkbox" ng-model="newTask.5"> Friday
+            </label>
+            <label class="btn btn-default">
+              <input type="checkbox" ng-model="newTask.6"> Saturday
+            </label>
+            <label class="btn btn-default">
+              <input type="checkbox" ng-model="newTask.7"> Sunday
+            </label>
+          </div><br />
+          <h4>Input Task Description:</h4>
+          <input type='text' ng-model="newTask.description" class="form-control"><br />
+          <button class="btn btn-success">Submit</button>
+        </form>
+      </div>
     </div>
-    <div list-name></div>
-      <table class="table table-bordered">
-        <tr>
-          <th>Monday</th>
-          <th>Tuesday</th>
-          <th>Wednesday</th>
-          <th>Thursday</th>
-          <th>Friday</th>
-          <th>Saturday</th>
-          <th>Sunday</th>
-        </tr>
-        <tr>
-          <td id="taskData" ng-repeat="(day,task_descriptions) in taskData">
-            <div ng-repeat="task in task_descriptions" ng-click="completeTask(task.id, task.taskWeekdayId)" ng-class="{active: task.complete == true}", value="{{task.taskWeekdayId}}" ng-model="$parent.picked"> {{task.description}}<hr></div>
-          </td>
-        </tr>
-      </table>
-    <h4>Add a task</h4>
-    <form ng-submit="addTask()" role="form">
-      Select Family Member:
-      <select ng-change="getUser()" ng-model="newTask.familyMember" ng-options="val as val['name'] for (key,val) in appData.familyMembers"></select><br />
-      Select Weekdays:
-      <input type="checkbox" ng-model="newTask.1"> Monday
-      <input type="checkbox" ng-model="newTask.2"> Tuesday
-      <input type="checkbox" ng-model="newTask.3"> Wednesday
-      <input type="checkbox" ng-model="newTask.4"> Thursday
-      <input type="checkbox" ng-model="newTask.5"> Friday
-      <input type="checkbox" ng-model="newTask.6"> Saturday
-      <input type="checkbox" ng-model="newTask.7"> Sunday<br />
-      Input Task Description:
-      <input type='text' ng-model="newTask.description"><br />
-      <button>Submit</button>
-    </form>
   </div>
 </div>

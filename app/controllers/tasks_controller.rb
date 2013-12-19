@@ -16,7 +16,7 @@ class TasksController < ApplicationController
 
   def create
     ajaxResponse = params[:_json]
-    family_member_id = ajaxResponse[0][:familyMember][:id]
+    family_member_id = ajaxResponse[0][:userId]
     description = ajaxResponse[0][:description]
     @task = Task.create(family_member_id: family_member_id, description: description)
     #numbers correspond to days of the week starting with Monday, which equals 1
