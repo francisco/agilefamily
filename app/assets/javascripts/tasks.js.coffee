@@ -48,12 +48,12 @@ taskSchedule.controller "NamesController", [ '$scope', '$http', '$resource', ($s
     $scope.taskUserId = userId
     $scope.taskUsername = name
 
-  # called after user submit new task
+  # called after user submits new task form
   $scope.addTask = () ->
     # instantiates appdata task object, assigns user and set object equal to variable
     $scope.appData["tasks"] = $scope.appData["tasks"] || []
+    $scope.username = $scope.taskUsername + "'s Task List"
     $scope.newTask.userId = $scope.taskUserId
-    console.log $scope.newTask
     $scope.appData.tasks.push($scope.newTask)
     data = $scope.appData.tasks
 
