@@ -1,7 +1,7 @@
+taskSchedule = angular.module 'taskSchedule', ['ngResource', 'ng-rails-csrf', 'firebase']
 
-taskSchedule = angular.module 'taskSchedule', ['ngResource', 'ng-rails-csrf']
+taskSchedule.controller "NamesController", [ '$scope', '$http', '$resource', '$firebase', ($scope, $http, $resource, $firebase) ->
 
-taskSchedule.controller "NamesController", [ '$scope', '$http', '$resource', ($scope, $http, $resource) ->
 
   # gets user names via json and sets username/taskUsername to default value
   $scope.getNames = ->
@@ -21,6 +21,17 @@ taskSchedule.controller "NamesController", [ '$scope', '$http', '$resource', ($s
 
   # gets tasks for a selected user using get request
   $scope.getTask = (userId) ->
+    taskRef = new Firebase('https://agilefam.firebaseio.com/tasks/' + userId)
+    $scope.fbTasks = $firebase(taskRef)
+    fbTasks = angular.fromJson(angular.toJson(value))
+    $scope.messages = [];
+
+    angular.forEach(messagesObj, function (message, key) {
+      $scope.messages.push(message);
+    });
+
+    console.log $scope.fbTasks
+
     $scope.method = 'GET'
     $scope.url = '/family_members/'+userId+'.json'
     $http({method: $scope.method, url: $scope.url})
@@ -33,7 +44,7 @@ taskSchedule.controller "NamesController", [ '$scope', '$http', '$resource', ($s
     # loops through user's taskdata and organizes it into processable data object
     $scope.orgData = ()->
       $scope.taskData = {"1": [], "2": [], "3":[], "4":[], "5":[], "6":[], "7":[]}
-
+      $scope.fbTasks
       $scope.newTaskData.forEach (item)->
         item.days.forEach (day)->
           description = item.task.description
@@ -49,7 +60,16 @@ taskSchedule.controller "NamesController", [ '$scope', '$http', '$resource', ($s
     $scope.taskUsername = name
 
   # called after user submits new task form
-  $scope.addTask = () ->
+
+  $scope.addNewTask = () ->
+    #creates new Firebase instance for saving tasks
+    taskRef = new Firebase('https://agilefam.firebaseio.com/tasks/' + $scope.taskUserId)
+    $scope.fbTasks = $firebase(taskRef)
+    #testing firebase add new task
+    $scope.fbTasks.$add
+      task: $scope.newTask
+      complete: false
+
     # instantiates appdata task object, assigns user and set object equal to variable
     $scope.appData["tasks"] = $scope.appData["tasks"] || []
     $scope.username = $scope.taskUsername + "'s Task List"
