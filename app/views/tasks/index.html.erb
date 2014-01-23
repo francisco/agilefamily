@@ -26,6 +26,19 @@
         </td>
       </tr>
     </table>
+    <div ng-repeat="task in fbTasks">
+      <table>
+        <tr>
+        <th>Monday</th>
+        <th>Tuesday</th>
+        <th>Wednesday</th>
+        <th>Thursday</th>
+        <th>Friday</th>
+        <th>Saturday</th>
+        <th>Sunday</th>
+      </tr>
+      <span ng-if="task.task.1 == true"></span>
+    </div>
     <div class="panel panel-success">
       <div class="panel-heading"><strong>Add a Task</strong></div>
       <div class="panel-body">

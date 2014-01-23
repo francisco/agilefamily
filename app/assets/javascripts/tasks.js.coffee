@@ -23,15 +23,9 @@ taskSchedule.controller "NamesController", [ '$scope', '$http', '$resource', '$f
   $scope.getTask = (userId) ->
     taskRef = new Firebase('https://agilefam.firebaseio.com/tasks/' + userId)
     $scope.fbTasks = $firebase(taskRef)
-    fbTasks = angular.fromJson(angular.toJson(value))
-    $scope.messages = [];
-
-    angular.forEach(messagesObj, function (message, key) {
-      $scope.messages.push(message);
-    });
+    # fbTasks = angular.fromJson(angular.toJson(value))
 
     console.log $scope.fbTasks
-
     $scope.method = 'GET'
     $scope.url = '/family_members/'+userId+'.json'
     $http({method: $scope.method, url: $scope.url})
@@ -44,7 +38,6 @@ taskSchedule.controller "NamesController", [ '$scope', '$http', '$resource', '$f
     # loops through user's taskdata and organizes it into processable data object
     $scope.orgData = ()->
       $scope.taskData = {"1": [], "2": [], "3":[], "4":[], "5":[], "6":[], "7":[]}
-      $scope.fbTasks
       $scope.newTaskData.forEach (item)->
         item.days.forEach (day)->
           description = item.task.description
