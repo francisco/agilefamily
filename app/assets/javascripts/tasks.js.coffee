@@ -1,7 +1,7 @@
 
 taskSchedule = angular.module 'taskSchedule', ['ngResource', 'ng-rails-csrf']
 
-taskSchedule.controller "NamesController", [ '$scope', '$http', '$resource', ($scope, $http, $resource) ->
+taskSchedule.controller "NamesController", [ '$scope', '$http', '$resource', '$filter', ($scope, $http, $resource, $filter) ->
 
   # gets user names via json and sets username/taskUsername to default value
   $scope.getNames = ->
@@ -50,9 +50,10 @@ taskSchedule.controller "NamesController", [ '$scope', '$http', '$resource', ($s
 
   # called after user submits new task form
   $scope.addTask = () ->
-    # instantiates appdata task object, assigns user and set object equal to variable
+    # instantiates appdata task object, assigns user and sets object equal to variable
     $scope.appData["tasks"] = $scope.appData["tasks"] || []
     $scope.username = $scope.taskUsername + "'s Task List"
+    # $scope.newTask = $filter('filter')($scope.newTask, {1: true, 2: true, 3: true, 4: true, 5: true, 6: true, 7: true})
     $scope.newTask.userId = $scope.taskUserId
     $scope.appData.tasks.push($scope.newTask)
     data = $scope.appData.tasks
@@ -72,7 +73,7 @@ taskSchedule.controller "NamesController", [ '$scope', '$http', '$resource', ($s
   $scope.itemClass = (item) ->
     return item == $scope.done ? "active" : undefined
 
-  # updates completion status on dom and on the backend
+  # updates completion status on view and on the backend
   $scope.completeTask = (taskId, taskWeekdayId) ->
     $scope.picked = taskWeekdayId
     this.task.complete = !this.task.complete

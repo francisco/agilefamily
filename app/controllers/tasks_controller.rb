@@ -19,19 +19,7 @@ class TasksController < ApplicationController
     family_member_id = ajaxResponse[0][:userId]
     description = ajaxResponse[0][:description]
     @task = Task.create(family_member_id: family_member_id, description: description)
-    #numbers correspond to days of the week starting with Monday, which equals 1
-    ajaxResponse[0].each_pair{ |x, y|
-      x == "1" && y == "true" ? @task.weekdays << Weekday.find_by_weekday("1") : nil
-      x == "2" && y == "true" ? @task.weekdays << Weekday.find_by_weekday("2") : nil
-      x == "3" && y == "true" ? @task.weekdays << Weekday.find_by_weekday("3") : nil
-      x == "4" && y == "true" ? @task.weekdays << Weekday.find_by_weekday("4") : nil
-      x == "5" && y == "true" ? @task.weekdays << Weekday.find_by_weekday("5") : nil
-      x == "6" && y == "true" ? @task.weekdays << Weekday.find_by_weekday("6") : nil
-      x == "7" && y == "true" ? @task.weekdays << Weekday.find_by_weekday("7") : nil
-    }
-    puts "*"*30
-    p @task
-    p @task.weekdays
+    @task.addTasks(ajaxResponse)
     respond_to do |format|
       format.json { render json: @task }
     end
